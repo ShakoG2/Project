@@ -1,0 +1,91 @@
+Ext.define("SL.view.registration.InformationWindow",{
+    extend:"Ext.window.Window",
+    title:"კლიენტის ინფორმაცია",
+    requires:["SL.model.Region"],
+    modal:true,
+    // config: {
+    //     post: null
+    // },
+    viewModel:{
+        xclass:"SL.view.registration.CustomerViewModel"
+    },
+    controller:{
+        xclass:"SL.view.registration.InformationWindowController"
+    },
+    listeners: {
+        afterrender: 'windowAfterRender'
+    },
+    layout: {
+        type: 'vbox',
+        align: 'stretch',
+    },
+    width:500,
+    height:700,
+    items:[{
+        xtype:"form",
+        border:false,
+        reference:"form",
+        fieldDefaults: {
+            anchor: '100%',
+            allowBlank: false,
+            margin:"30 0 0 0 "
+        },
+        defaultType:"displayfield",
+        items:[{
+            text: 'ID',
+            name: 'id',
+            fieldLabel:"ID",
+            hidden:true,
+        }, {
+            text: 'კლიენტის ტიპი',
+            name: 'type',
+            fieldLabel:"კლიენტის ტიპი",
+        }, {
+            text: 'დასახელება',
+            name: 'fullName',
+            fieldLabel:"დასახელება",
+        }, {
+            text: 'საიდ. ნომერი',
+            name: 'identity',
+            fieldLabel:"საიდ.ნომერი",
+        }, {
+            text: 'რეგიონი',
+            fieldLabel:"რეგიონი",
+            name: 'region',
+        }, {
+            text: 'რაიონი',
+            name: 'district',
+            // renderer:"regionNameRenderer",
+            fieldLabel:"რაიონი",
+        }, {
+            text: 'დაბადების თარიღი',
+            name: 'birthDate',
+            format: 'd.m.Y',
+            fieldLabel:"დაბადების თარიღი",
+        },{
+            margin:"15 0 0 0 ",
+            border:false,
+            xtype:"grid",
+            title:"კავშირები",
+            columns: [{
+                text: 'ID',
+                dataIndex: 'id',
+                width: 100,
+                hidden: true,
+            }, {
+                text: 'კავშირის ტიპი',
+                dataIndex: 'type',
+                flex: 1,
+                // renderer: 'relationTypeRenderer',
+            }, {
+                text: 'სახელი',
+                dataIndex: 'firstName',
+                flex: 1,
+            }, {
+                text: 'გვარი',
+                dataIndex: 'lastName',
+                flex: 1,
+            }]
+        }]
+    }]
+})
