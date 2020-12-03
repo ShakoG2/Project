@@ -1,14 +1,7 @@
 Ext.define("SL.view.registration.InformationWindow",{
     extend:"Ext.window.Window",
     title:"კლიენტის ინფორმაცია",
-    requires:["SL.model.Region"],
     modal:true,
-    // config: {
-    //     post: null
-    // },
-    viewModel:{
-        xclass:"SL.view.registration.CustomerViewModel"
-    },
     controller:{
         xclass:"SL.view.registration.InformationWindowController"
     },
@@ -55,7 +48,7 @@ Ext.define("SL.view.registration.InformationWindow",{
         }, {
             text: 'რაიონი',
             name: 'district',
-            // renderer:"regionNameRenderer",
+            renderer:"regionNameRenderer",
             fieldLabel:"რაიონი",
         }, {
             text: 'დაბადების თარიღი',

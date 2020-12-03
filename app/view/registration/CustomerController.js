@@ -81,9 +81,11 @@ Ext.define('SL.view.registration.CustomerController', {
     return store.getRange().map(rec => rec.getData());
   },
   informationWindow:function (view,record){
-    Ext.create("SL.view.registration.InformationWindow",{
-      autoShow:true,
-    })
     this.getViewModel().set('customerData', record);
-  }
+    const win = Ext.create("SL.view.registration.InformationWindow",{
+      autoShow: false,
+    });
+    this.getView().add(win);
+    win.show();
+  },
 });
