@@ -5,6 +5,8 @@ Ext.define('SL.view.registration.CustomerController', {
     const values = this.lookup('form').getValues();
     const store = this.getViewModel().getStore('districts');
     store.clearFilter();
+    // store.removeAll();
+    // store.sync();
     store.filterBy(function(rec) {
       return rec.get('region_id') === values.region;
     });
@@ -82,10 +84,10 @@ Ext.define('SL.view.registration.CustomerController', {
   },
   informationWindow:function (view,record){
     this.getViewModel().set('customerData', record);
-    const win = Ext.create("SL.view.registration.InformationWindow",{
+    let win = this.getView().add({
+      xclass:'SL.view.registration.InformationWindow',
       autoShow: false,
     });
-    this.getView().add(win);
     win.show();
   },
 });

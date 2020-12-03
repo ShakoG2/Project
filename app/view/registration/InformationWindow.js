@@ -1,12 +1,10 @@
 Ext.define("SL.view.registration.InformationWindow",{
     extend:"Ext.window.Window",
     title:"კლიენტის ინფორმაცია",
+    xtype:"information",
     modal:true,
     controller:{
         xclass:"SL.view.registration.InformationWindowController"
-    },
-    listeners: {
-        afterrender: 'windowAfterRender'
     },
     layout: {
         type: 'vbox',
@@ -48,7 +46,16 @@ Ext.define("SL.view.registration.InformationWindow",{
         }, {
             text: 'რაიონი',
             name: 'district',
-            renderer:"regionNameRenderer",
+            renderer:function (val){
+                const field = this;
+                if(!val) return '';
+                const ok=field.up("information")
+                const region=ok.getController().getStore("regions");
+                const regionRec=region.getById(val);
+
+                if(!regionRec) return val;
+                return regionRec.get("name");
+            },
             fieldLabel:"რაიონი",
         }, {
             text: 'დაბადების თარიღი',
